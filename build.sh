@@ -6,21 +6,21 @@
 # docker build -t vajrang/ubuntu:manifest-amd64 --build-arg ARCH=amd64 .
 # docker push vajrang/ubuntu:manifest-amd64
 
-arch=('amd64' 'arm32v7' 'arm64v8')
-username='vajrang'
-imagename='ubuntu'
+ARCH='amd64' 'arm32v7' 'arm64v8'
+USERNAME='vajrang'
+IMAGENAME='ubuntu'
 
-manifestargs=''
+MANIFESTARGS=''
 
-for a in ${arch[@]}
+for A in ARCH
 do
-    docker build -t $username/$imagename:manifest-$a --build-arg ARCH=$a/ .
-    docker push $username/$imagename:manifest-$a
-    manifestargs+=" --amend $username/$imagename:manifest-$a"
+    docker build -t $USERNAME/$IMAGENAME:manifest-$A --build-arg ARCH=$A/ .
+    docker push $USERNAME/$IMAGENAME:manifest-$A
+    MANIFESTARGS+=" --amend $USERNAME/$IMAGENAME:manifest-$A"
 done
 
-docker manifest create $username/$imagename:latest$manifestargs
-docker manifest push $username/$imagename:latest
+docker manifest create $USERNAME/$IMAGENAME:latest$MANIFESTARGS
+docker manifest push $USERNAME/$IMAGENAME:latest
 
 # TODO: delete the unneeded manifest-{arch} tags on the registry
 # looks like it can only be done via the REST api
