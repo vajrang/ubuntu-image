@@ -7,3 +7,4 @@ RUN apt-get update && apt-get install -y \
     nano \
     && rm -rf /var/lib/apt/lists/*
 
+LABEL description="multi-arch ubuntu image with all apt upgrades applied + git, curl, nano installed"
