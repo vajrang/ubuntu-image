@@ -6,13 +6,13 @@
 # docker build -t vajrang/ubuntu:manifest-amd64 --build-arg ARCH=amd64 .
 # docker push vajrang/ubuntu:manifest-amd64
 
-ARCH='amd64' 'arm32v7' 'arm64v8'
+ARCH='amd64 arm32v7 arm64v8'
 USERNAME='vajrang'
 IMAGENAME='ubuntu'
 
 MANIFESTARGS=''
 
-for A in ARCH
+for A in $ARCH
 do
     docker build -t $USERNAME/$IMAGENAME:manifest-$A --build-arg ARCH=$A/ .
     docker push $USERNAME/$IMAGENAME:manifest-$A
